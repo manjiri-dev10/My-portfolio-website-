@@ -23,7 +23,7 @@ I am passionate about technology, programming, and web development.
 My resume is available on the website for download.
 
 ## 🌍 Live Website
-https://manjiria12.github.io/My-portfolio-website-/
+https://manjiri-dev10.github.io/My-portfolio-website-/
 
 ## 📷 Preview
 This portfolio includes:
