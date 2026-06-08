@@ -6,7 +6,12 @@
 <title>Manjiri Arolkar — IT Student & Python · Web Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("X0Wjd9jdts1WrXeeg");
+</script>
 <style>
+
 /* ═══════════════════════════════════════════════════
    TOKENS & THEME
 ═══════════════════════════════════════════════════ */
@@ -1095,6 +1100,28 @@ footer span { color: var(--accent); }
 
       <div class="cert-card reveal">
         <div class="cert-ribbon">2026</div>
+        <div class="cert-icon-wrap">🤖</div>
+        <div class="cert-name">Google AI Professional Certificate</div>
+        <div class="cert-issuer">Google via Coursera</div>
+        <div class="cert-desc"> 
+         Completed a comprehensive AI certification program covering,
+         practical applications of AI in workplace productivity, research, 
+         communication, content creation, data analysis, and app development.
+          
+        </div>
+        <div class="cert-footer">
+          <div class="cert-year"><i class="fa-regular fa-calendar"></i> 2026</div>
+          <a href="Certificates/Google AI Professional Certificate.pdf"
+           target="_blank"
+           class="cert-verify">
+          <i class="fa-solid fa-circle-check"></i>
+           View Certificate
+        </a>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-ribbon">2026</div>
         <div class="cert-icon-wrap">📊</div>
         <div class="cert-name">Data Science Intermediate</div>
         <div class="cert-issuer">HunarHo</div>
@@ -1158,6 +1185,7 @@ footer span { color: var(--accent); }
         </a>
         </div>
       </div>
+
 
     </div>
   </div>
@@ -1225,37 +1253,33 @@ footer span { color: var(--accent); }
       </div>
 
       <!-- Contact Form -->
-      <div class="reveal">
-        <form class="contact-form" onsubmit="submitForm(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" placeholder="Your name" required/>
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" placeholder="your@email.com" required/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Subject</label>
-            <input type="text" placeholder="Internship opportunity / Collaboration…" required/>
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea placeholder="Tell me more…" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
-            <i class="fa-solid fa-paper-plane"></i> Send Message
-          </button>
-          <p id="form-msg" style="text-align:center;font-size:.8rem;color:var(--accent);display:none;margin-top:.5rem">
-            ✓ Message sent! (Connect to a backend or EmailJS to make this work)
-          </p>
-        </form>
+<div class="reveal">
+  <form class="contact-form" id="contact-form" onsubmit="submitForm(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="from_name" placeholder="Your name" required/>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="from_email" placeholder="your@email.com" required/>
       </div>
     </div>
-  </div>
-</section>
+    <div class="form-group">
+      <label>Subject</label>
+      <input type="text" id="subject" placeholder="Internship opportunity / Collaboration…" required/>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea id="message" placeholder="Tell me more…" required></textarea>
+    </div>
+    <button type="submit" id="submit-btn" class="btn btn-primary" style="width:100%;justify-content:center">
+      <i class="fa-solid fa-paper-plane"></i> Send Message
+    </button>
+    <p id="form-msg" style="text-align:center;font-size:.8rem;display:none;margin-top:.5rem"></p>
+  </form>
+</div>
+        
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
@@ -1442,12 +1466,38 @@ function openMobileNav()  { document.getElementById('mobile-nav').classList.add(
 function closeMobileNav() { document.getElementById('mobile-nav').classList.remove('open'); }
 
 /* ── Form ────────────────────────────────────────── */
+/* ── Form ────────────────────────────────────────── */
 function submitForm(e) {
   e.preventDefault();
+
+  const btn = document.getElementById('submit-btn');
   const msg = document.getElementById('form-msg');
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending…';
+
+  const templateParams = {
+    from_name:  document.getElementById('from_name').value,
+    from_email: document.getElementById('from_email').value,
+    subject:    document.getElementById('subject').value,
+    message:    document.getElementById('message').value,
+  };
+
+emailjs.send('service_manjiri', 'template_zinlpot', templateParams)    .then(() => {
+      msg.style.display = 'block';
+      msg.style.color = 'var(--accent)';
+      msg.textContent = '✓ Message sent! I\'ll get back to you soon.';
+      document.getElementById('contact-form').reset();
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+    })
+.catch((error) => {
   msg.style.display = 'block';
-  e.target.reset();
-  setTimeout(() => { msg.style.display = 'none'; }, 4000);
+  msg.style.color = '#e74c3c';
+msg.textContent = '✗ Something went wrong. Please email me directly.';
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+    });
 }
 
 /* ── Active nav link ────────────────────────────── */
