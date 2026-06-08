@@ -1,7 +1,5 @@
 # 🌐 Manjiri Arolkar — Personal Portfolio Website
 
-![Portfolio Preview](Portfolio preview.png)
-
 > A responsive, modern personal portfolio built with pure HTML, CSS, and JavaScript — no frameworks.
 
 🔗 **Live Site:** [manjiri-dev10.github.io/My-portfolio-website-](https://manjiri-dev10.github.io/My-portfolio-website-/)
