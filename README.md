@@ -40,10 +40,12 @@ My-portfolio-website-/
 ├── index.html          # Main HTML file
 ├── photo.jpeg          # Profile photo
 ├── resume.pdf          # Downloadable resume
-├── Certificates/       # PDF certificates
+├── Certificates/       # Professional certificates
 │   ├── Data Science Intermediate.pdf
 │   ├── Mastering Prompt Engineering.pdf
-│   └── Intellectual Property Rights Certificate.pdf
+│   ├── Intellectual Property Rights Certificate.pdf
+│   └── Google AI Essentials Certificate.pdf
+
 └── README.md
 ```
 
